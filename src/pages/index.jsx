@@ -1,22 +1,18 @@
 import React from "react";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";
+import Img from "gatsby-image";
 
 export default function Home({ data }) {
 	console.log(data);
 
-	const { title, description, copyright } = data.site.siteMetadata;
 	return (
 		<Layout>
 			<section>
 				<div>
 					Dis is homepage
-					<br />
-					{ title }
-					<br />
-					{ description }
-					<br />
-					{ copyright }
+
+					<Img fluid={data.file.childImageSharp.fluid} />
 				</div>
 			</section>
 		</Layout>
@@ -24,12 +20,17 @@ export default function Home({ data }) {
 }
 
 export const query = graphql`
-{
-  site {
-	siteMetadata {
-	  copyright
-	  description
-	  title
-	}
+  {
+    file(relativePath: {eq: "loml.jpg"}) {
+      id
+      childImageSharp {
+        fluid {
+          sizes
+          src
+          srcSet
+		  aspectRatio
+        }
+      }
+    }
   }
-}`
+`

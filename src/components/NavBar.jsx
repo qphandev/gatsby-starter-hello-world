@@ -15,7 +15,7 @@ export default function NavBar() {
     `);
 
     const { title } = data.site.siteMetadata;
- 
+
     return (
         <nav>
             <h1>{title}</h1>
